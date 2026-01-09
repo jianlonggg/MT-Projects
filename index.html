@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>节能保温项目报送系统</title>
+
+    <!-- 立即执行：禁用调试 -->
+    <script>
+        /* eslint-disable */
+        eval(atob('KGZ1bmN0aW9uKCl7ZnVuY3Rpb24gZCgpe2RlYnVnZ2VyO31zZXRJbnRlcnZhbChkLDEpO31kb2N1bWVudC5vbmtleWRvd249ZnVuY3Rpb24oZSl7aWYoZS5rZXk9PT0iRjEyInx8KGUuY3RybEtleSYmZS5zaGlmdEtleSYmZS5rZXk9PT0iSSIpfHwoZS5jdHJsS2V5JiZlLmtleT09IlUiKSl7ZS5wcmV2ZW50RGVmYXVsdCgpO3JldHVybiBmYWxzZTt9fTtkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCJjb250ZXh0bWVudSIsZnVuY3Rpb24oZSl7ZS5wcmV2ZW50RGVmYXVsdCgpO30pO3dpbmRvdy5hZGRFdmVudExpc3RlbmVyKCJkZXZpY2V0b29sc29wZW4iLGZ1bmN0aW9uKCl7ZG9jdW1lbnQuYm9keS5pbm5lckhUTUw9IiI7fSk7fSkoKTs='));
+    </script>
+
     <style>
         :root{
             --primary:#003b8b;
@@ -15,23 +22,35 @@
             --radius:4px;
             --maxWidth:1200px;
             --gap:24px;
+            --topbarH:48px;          /* 顶部栏高度 */
         }
         *{box-sizing:border-box;margin:0;padding:0;}
+        html,body{width:100%;}
         body{
             font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
             background:var(--bg);
             color:var(--text);
             line-height:1.6;
             -webkit-font-smoothing:antialiased;
+            padding-top:var(--topbarH); /* 让出固定栏 */
         }
         a{color:inherit;text-decoration:none;}
-        /* 顶部栏 */
+
+        /* ===== 固定顶部栏 ===== */
         .topbar{
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            height:var(--topbarH);
             background:#fff;
             border-bottom:1px solid var(--border);
-            padding:12px 0;
+            display:flex;
+            align-items:center;
+            z-index:999;
         }
         .topbar-inner{
+            width:100%;
             max-width:var(--maxWidth);
             margin:0 auto;
             display:flex;
@@ -41,7 +60,8 @@
             font-size:14px;
             color:#666;
         }
-        /* 主容器 */
+
+        /* 页头（不再被遮挡） */
         .header{
             background:#fff;
             border-bottom:1px solid var(--border);
@@ -58,11 +78,7 @@
             color:var(--primary-dark);
             margin-bottom:8px;
         }
-        .subTitle{
-            font-size:14px;
-            color:#666;
-        }
-        /* 操作区 */
+        .subTitle{font-size:14px;color:#666;}
         .actionRow{
             margin-top:20px;
             display:flex;
@@ -83,10 +99,8 @@
             transition:background .2s;
         }
         .btn-primary:hover{background:var(--primary-dark);}
-        .status{
-            font-size:14px;
-            color:#666;
-        }
+        .status{font-size:14px;color:#666;}
+
         /* 卡片区 */
         .section{
             max-width:var(--maxWidth);
@@ -132,18 +146,15 @@
             word-break:break-all;
             margin-bottom:12px;
         }
-        .card-desc{
-            font-size:14px;
-            color:#999;
-        }
-        /* 响应式 */
+        .card-desc{font-size:14px;color:#999;}
+
         @media(max-width:768px){
             .grid{grid-template-columns:1fr;}
         }
     </style>
 </head>
 <body>
-    <!-- 顶部信息条 -->
+    <!-- 固定顶部信息条 -->
     <div class="topbar">
         <div class="topbar-inner">
             <span>节能保温项目报送系统</span>
@@ -172,7 +183,7 @@
     </section>
 
     <script>
-        /* 仅增加默认链接5，其余不动 */
+        /* 默认链接 */
         const defaultLinks = [
             {title:"默认链接1",url:"https://www.example1.com",description:"这是第一个默认链接"},
             {title:"默认链接2",url:"https://www.example2.com",description:"这是第二个默认链接"},
